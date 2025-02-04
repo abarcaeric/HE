@@ -1,0 +1,16 @@
+beautifulsoup4==4.13.1
+bs4==0.0.2
+certifi==2025.1.31
+charset-normalizer==3.4.1
+distlib==0.3.9
+filelock==3.17.0
+hupper==1.12.1
+idna==3.10
+numpy==2.2.2
+platformdirs==4.3.6
+requests==2.32.3
+soupsieve==2.6
+telegram==0.0.1
+typing_extensions==4.12.2
+urllib3==2.3.0
+virtualenv==20.29.1
