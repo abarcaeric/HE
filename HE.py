@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 TOKEN = "7539406137:AAEKVhg1M65H6Birs-RpCYObYeOAr6Yfq8g"
 #chat_id = "6697147223"
 chat_id = "@hechosesencialeschile"
-timer = 20
+timer = 60
 fecha_old = ''
 
 #print ("hola1")
@@ -71,7 +71,7 @@ while True:
     #            data = {"chat_id": chat_id, "text": "HOLA"})
     #        time.sleep(3)   # 3 segundos.
 
-    # Iniciar la ejecución en segundo plano.
+    #Iniciar la ejecución en segundo plano.
     #t = threading.Thread(target=timer)
     #t.start()
 
