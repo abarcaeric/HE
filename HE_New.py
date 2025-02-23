@@ -4,6 +4,7 @@ import time
 from flask import Flask
 from bs4 import BeautifulSoup
 import json
+import os
 
 TOKEN = "7539406137:AAEKVhg1M65H6Birs-RpCYObYeOAr6Yfq8g"
 chat_id = "@hechosesencialeschile"
@@ -40,8 +41,8 @@ def scraping_loop():
                     print('ENVIO')
                     mensaje = 'NUEVO HECHO ESENCIAL\n\nFecha : ' + str(fecha) + '\nEmpresa : ' + str(entidad) + '\nMateria : ' + str(materia) +  '\nDocumento : ' + str(archivo) 
                     
-                    #requests.post("https://api.telegram.org/bot"+TOKEN+"/sendMessage",
-                    #    data={"chat_id": chat_id, "text": mensaje})
+                    requests.post("https://api.telegram.org/bot"+TOKEN+"/sendMessage",
+                        data={"chat_id": chat_id, "text": mensaje})
                     fecha_old = fecha
                     time.sleep(timer)
         
@@ -61,4 +62,5 @@ def home():
 
 # Ejecutar Flask
 if __name__ == '__main__':
-    app.run(port=8081)
+    port = int(os.environ.get('PORT', 8081))  # Usa el puerto de Render o 8081 por defecto
+    app.run(host='0.0.0.0', port=port)
