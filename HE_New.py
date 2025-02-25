@@ -6,8 +6,9 @@ from bs4 import BeautifulSoup
 import json
 import os
 
-TOKEN = "7539406137:AAEKVhg1M65H6Birs-RpCYObYeOAr6Yfq8g"
-chat_id = "@hechosesencialeschile"
+TOKEN = "7539406137:AAEKVhg1M65H6Birs-RpCYObYeOAr6Yfq8g" #token acceso @BotFather 
+chat_id = "@hechosesencialeschile" #id grupo
+#chat_id = "6697147223" #id bot
 timer = 30
 fecha_old = ''
 
@@ -38,15 +39,12 @@ def scraping_loop():
             # Recorrer de las empresas
             for valor in Empresas:
                 if fecha_old != fecha and str(valor) == str(entidad):
-                    print('ENVIO')
                     mensaje = 'NUEVO HECHO ESENCIAL\n\nFecha : ' + str(fecha) + '\nEmpresa : ' + str(entidad) + '\nMateria : ' + str(materia) +  '\nDocumento : ' + str(archivo) 
                     
                     requests.post("https://api.telegram.org/bot"+TOKEN+"/sendMessage",
                         data={"chat_id": chat_id, "text": mensaje})
                     fecha_old = fecha
-                    time.sleep(timer)
         
-            print('NO ENVIO')
             time.sleep(timer)
         else:
             print('Hubo un error en la peticion')
