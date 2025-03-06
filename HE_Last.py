@@ -7,8 +7,8 @@ from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 
 TOKEN = "7539406137:AAEKVhg1M65H6Birs-RpCYObYeOAr6Yfq8g" #token acceso @BotFather 
-#chat_id = "@hechosesencialeschile"  # ID del grupo de Telegram
-chat_id = "6697147223" #id bot
+chat_id = "@hechosesencialeschile"  # ID del grupo de Telegram
+#chat_id = "6697147223" #id bot
 timer = 30
 fecha_old = ''
 
@@ -40,12 +40,12 @@ def scraping_loop():
                 materia = hechos.find_all("td")[3].text.strip()
 
                 # Verificar si la empresa está en la lista y si es un hecho nuevo
-                #for valor in Empresas:
-                    #if fecha_old != fecha and str(valor) == str(entidad):
-                mensaje = f'NUEVO HECHO ESENCIAL\n\nFecha: {fecha}\nEmpresa: {entidad}\nMateria: {materia}\nDocumento: {archivo}'
+                for valor in Empresas:
+                    if fecha_old != fecha and str(valor) == str(entidad):
+                        mensaje = f'NUEVO HECHO ESENCIAL\n\nFecha: {fecha}\nEmpresa: {entidad}\nMateria: {materia}\nDocumento: {archivo}'
 
-                requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage",
-                                data={"chat_id": chat_id, "text": mensaje})
+                        requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage",
+                                        data={"chat_id": chat_id, "text": mensaje})
                 #response = requests.post(
                 #        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
                 #        data={"chat_id": chat_id, "text": mensaje}
