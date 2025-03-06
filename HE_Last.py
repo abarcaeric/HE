@@ -6,7 +6,7 @@ from flask import Flask
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 
-TOKEN = "7539406137:AAEKFhg1M65H6Birs-RpCYObYeOAr6Yfq8g"  # Token del bot
+TOKEN = "7539406137:AAEKVhg1M65H6Birs-RpCYObYeOAr6Yfq8g" #token acceso @BotFather 
 #chat_id = "@hechosesencialeschile"  # ID del grupo de Telegram
 chat_id = "6697147223" #id bot
 timer = 30
@@ -46,6 +46,11 @@ def scraping_loop():
 
                 requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage",
                                 data={"chat_id": chat_id, "text": mensaje})
+                #response = requests.post(
+                #        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
+                #        data={"chat_id": chat_id, "text": mensaje}
+                #    )
+                #print("Respuesta de Telegram:", response.status_code, response.text)
                 print ("envio mensaje a telegram")
                 fecha_old = fecha
 
@@ -76,5 +81,5 @@ def home():
     return "Servicio de scraping en ejecución."
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8081))  # Usa el puerto de Render o 8081 por defecto
+    port = int(os.environ.get('PORT', 8082))  # Usa el puerto de Render o 8081 por defecto
     app.run(host='0.0.0.0', port=port)

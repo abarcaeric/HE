@@ -7,8 +7,8 @@ import json
 import os
 
 TOKEN = "7539406137:AAEKVhg1M65H6Birs-RpCYObYeOAr6Yfq8g" #token acceso @BotFather 
-chat_id = "@hechosesencialeschile" #id grupo
-#chat_id = "6697147223" #id bot
+#chat_id = "@hechosesencialeschile" #id grupo
+chat_id = "6697147223" #id bot
 timer = 30
 fecha_old = ''
 
@@ -37,13 +37,13 @@ def scraping_loop():
             materia = hechos.find_all("td")[3].text.strip()
 
             # Recorrer de las empresas
-            for valor in Empresas:
-                if fecha_old != fecha and str(valor) == str(entidad):
-                    mensaje = 'NUEVO HECHO ESENCIAL\n\nFecha : ' + str(fecha) + '\nEmpresa : ' + str(entidad) + '\nMateria : ' + str(materia) +  '\nDocumento : ' + str(archivo) 
-                    
-                    requests.post("https://api.telegram.org/bot"+TOKEN+"/sendMessage",
-                        data={"chat_id": chat_id, "text": mensaje})
-                    fecha_old = fecha
+            #for valor in Empresas:
+            #if fecha_old != fecha and str(valor) == str(entidad):
+            mensaje = 'NUEVO HECHO ESENCIAL\n\nFecha : ' + str(fecha) + '\nEmpresa : ' + str(entidad) + '\nMateria : ' + str(materia) +  '\nDocumento : ' + str(archivo) 
+            
+            requests.post("https://api.telegram.org/bot"+TOKEN+"/sendMessage",
+                data={"chat_id": chat_id, "text": mensaje})
+            fecha_old = fecha
         
             time.sleep(timer)
         else:
@@ -60,5 +60,5 @@ def home():
 
 # Ejecutar Flask
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8081))  # Usa el puerto de Render o 8081 por defecto
+    port = int(os.environ.get('PORT', 8082))  # Usa el puerto de Render o 8081 por defecto
     app.run(host='0.0.0.0', port=port)
