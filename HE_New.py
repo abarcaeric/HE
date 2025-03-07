@@ -41,10 +41,16 @@ def scraping_loop():
             # Recorrer de las empresas
             for valor in Empresas:
                 if fecha_old != fecha and str(valor) == str(entidad):
-                    mensaje = 'NUEVO HECHO ESENCIAL\n\nFecha : ' + str(fecha) + '\nEmpresa : ' + str(entidad) + '\nMateria : ' + str(materia) +  '\nDocumento : ' + str(archivo) 
+                     
+                    mensaje = (f"📢 <b>NUEVO COMUNICADO ESENCIAL</b> 📢 \n\n"
+                                f"📅 <b>Fecha :</b> {str(fecha)}\n"
+                                f"🏢 <b>Empresa :</b> {str(entidad)}\n"
+                                f"📂 <b>Materia :</b> {str(materia)}\n"
+                                f"📄 <bDocumento :</b> <a href='{str(archivo)}'>Comunicado PDF</a>")
+                  
                     
                     requests.post("https://api.telegram.org/bot"+TOKEN+"/sendMessage",
-                        data={"chat_id": chat_id, "text": mensaje})
+                        data={"chat_id": chat_id, "text": mensaje, "parse_mode": "HTML"})
                     fecha_old = fecha
         
             time.sleep(timer)

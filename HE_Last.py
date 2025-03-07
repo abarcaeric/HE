@@ -42,17 +42,23 @@ def scraping_loop():
                 # Verificar si la empresa está en la lista y si es un hecho nuevo
                 for valor in Empresas:
                     if fecha_old != fecha and str(valor) == str(entidad):
-                        mensaje = f'NUEVO HECHO ESENCIAL\n\nFecha: {fecha}\nEmpresa: {entidad}\nMateria: {materia}\nDocumento: {archivo}'
 
+                        mensaje = (f"📢 <b>NUEVO COMUNICADO ESENCIAL</b> 📢 \n\n"
+                                f"📅 <b>Fecha :</b> {str(fecha)}\n"
+                                f"🏢 <b>Empresa :</b> {str(entidad)}\n"
+                                f"📂 <b>Materia :</b> {str(materia)}\n"
+                                f"📄 <b>Documento :</b> <a href='{str(archivo)}'>Comunicado PDF</a>")
+                        
                         requests.post(f"https://api.telegram.org/bot{TOKEN}/sendMessage",
-                                        data={"chat_id": chat_id, "text": mensaje})
-                #response = requests.post(
-                #        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
-                #        data={"chat_id": chat_id, "text": mensaje}
-                #    )
-                #print("Respuesta de Telegram:", response.status_code, response.text)
-                print ("envio mensaje a telegram")
-                fecha_old = fecha
+                                        data={"chat_id": chat_id, "text": mensaje, "parse_mode": "HTML"})
+                        #response = requests.post(
+                        #        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
+                        #        data={"chat_id": chat_id, "text": mensaje, "parse_mode": "HTML"}
+                        #    )
+                        #print("Respuesta de Telegram:", response.status_code, response.text)
+
+                        print ("envio mensaje a telegram")
+                        fecha_old = fecha
 
             else:
                 print('Error en la petición:', respuesta.status_code)
